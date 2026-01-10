@@ -1,6 +1,6 @@
 # AI-Assisted Development Workflow Commands
 
-Progressive constraint workflow based on "The Thousand Token Rule" course principles.
+Progressive constraint workflow based on "The thousand token rule" course principles.
 
 ## Philosophy
 
@@ -379,7 +379,7 @@ Example project:
 
 ## Further Reading
 
-Based on course: "The Thousand Token Rule"
+Based on course: "The thousand token rule"
 
 Core concepts:
 - Front-load decisions into cheap iterations
