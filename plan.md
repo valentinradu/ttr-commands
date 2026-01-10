@@ -19,11 +19,13 @@ AskUserQuestion: "Document appears incomplete. Continue to next phase or refine 
 
 ## Docs location
 
-First use: Ask where to store docs (default `/docs/{feature}`). Save to `.psiar-config.json`:
+First use: Ask where to store docs (default `/docs`). Save to `.psiar-config.json`:
 
 ```json
-{"docsPath": "/docs/{feature}"}
+{"docsPath": "/docs"}
 ```
+
+Feature docs created at `{docsPath}/{feature}/`.
 
 ## Requirements
 

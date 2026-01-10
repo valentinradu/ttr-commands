@@ -154,7 +154,7 @@ First use of `/plan` asks:
 
 ```
 Where should planning docs be stored?
-- /docs/{feature} (recommended)
+- /docs (recommended)
 - Custom path
 ```
 
@@ -162,11 +162,11 @@ Saves to `.psiar-config.json`:
 
 ```json
 {
-  "docsPath": "/docs/{feature}"
+  "docsPath": "/docs"
 }
 ```
 
-Change anytime by editing config file.
+Feature docs created at `{docsPath}/{feature}/`. Change anytime by editing config file.
 
 ## Key Principles
 
@@ -246,7 +246,7 @@ Typical feature during development:
 After consolidation:
 
 ```
-/docs/features/
+/docs/
 └── feature-name.md           # Permanent documentation
 
 /src/
@@ -255,7 +255,7 @@ After consolidation:
     └── feature-name_test.rs  # Tests
 ```
 
-Planning artifacts deleted, preserved in git history.
+Planning directory `/docs/feature-name/` deleted, preserved in git history.
 
 ## Examples
 
