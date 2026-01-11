@@ -1,4 +1,4 @@
-# plan
+# ttr:plan
 
 Progressive requirements → technical → tests workflow.
 
@@ -44,9 +44,11 @@ Validate: `AskUserQuestion: "Requirements complete? (yes/refine/abandon)"`
 Read requirements. Write `{feature}-tech.md` (400-800 tokens):
 - Approach: Component breakdown
 - Dependencies: Libraries with justification, licenses, maintenance
-- Interfaces: Function signatures, types, contracts
+- Interfaces: Function signatures, types, contracts (signatures only, no implementation)
 - Failure modes: How components fail, error handling
 - Risks: What could go wrong, mitigation
+
+No code implementation. Minimal interface specs only if essential for clarity.
 
 Validate: `AskUserQuestion: "Approach sound? (yes/revise/back to requirements)"`
 
@@ -64,5 +66,5 @@ Validate: `AskUserQuestion: "Test plan complete? (yes/add more/back)"`
 ## Usage
 
 ```bash
-/plan feature-name
+/ttr:plan feature-name
 ```

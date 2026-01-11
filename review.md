@@ -1,10 +1,10 @@
-# review
+# ttr:review
 
 AI-assisted code review with pre-review explanation.
 
 ## Prerequisites
 
-Check: feature implemented, tests passing, audit complete. If audit missing: `AskUserQuestion: "Audit not run. Run /audit first/skip/cancel?"`
+Check: feature implemented, tests passing, audit complete. If audit missing: `AskUserQuestion: "Audit not run. Run /ttr:audit first/skip/cancel?"`
 
 ## Pre-review explanation
 
@@ -71,6 +71,6 @@ Review: {reviewer}
 ## Usage
 
 ```bash
-/review feature-name
-/review feature-name --scope file.rs
+/ttr:review feature-name
+/ttr:review feature-name --scope file.rs
 ```

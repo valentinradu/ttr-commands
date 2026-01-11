@@ -1,4 +1,4 @@
-# stub
+# ttr:stub
 
 Generate interface stubs from planning docs.
 
@@ -6,7 +6,7 @@ Generate interface stubs from planning docs.
 
 Check files exist: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`
 
-If missing: `AskUserQuestion: "Planning incomplete. Run /plan first or create stubs anyway (risky)?"`
+If missing: `AskUserQuestion: "Planning incomplete. Run /ttr:plan first or create stubs anyway (risky)?"`
 
 ## Stub structure
 
@@ -39,8 +39,20 @@ If technical plan is vague on types: `AskUserQuestion: "Types not specified. Inf
 
 Multiple modules: `AskUserQuestion: "Create stubs for all modules or one at a time?"`
 
+## Manifest
+
+After stub generation, save `{feature}-stub-manifest.json`:
+
+```json
+{
+  "feature": "feature-name",
+  "files": ["src/feature.rs", "src/feature/mod.rs"],
+  "timestamp": "ISO8601"
+}
+```
+
 ## Usage
 
 ```bash
-/stub feature-name
+/ttr:stub feature-name
 ```

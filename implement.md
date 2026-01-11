@@ -1,10 +1,10 @@
-# implement
+# ttr:implement
 
 TDD cycle: test → implement → verify → commit.
 
 ## Prerequisites
 
-Check stubs compile and tests exist. If missing: `AskUserQuestion: "Stubs/tests missing. Run /stub or create tests first or continue (will fail)?"`
+Check stubs compile and tests exist. If missing: `AskUserQuestion: "Stubs/tests missing. Run /ttr:stub or create tests first or continue (will fail)?"`
 
 ## Rhythm per function
 
@@ -58,9 +58,22 @@ Implement in dependency order: leaves first, top-level last.
 
 Circular dependency: `AskUserQuestion: "Circular {A}↔{B}. Refactor design/break with interface/implement together (risky)?"`
 
+## Manifest
+
+Update `{feature}-impl-manifest.json` after each function:
+
+```json
+{
+  "feature": "feature-name",
+  "files": ["src/feature.rs", "tests/feature_test.rs"],
+  "functions": ["fn_name_1", "fn_name_2"],
+  "timestamp": "ISO8601"
+}
+```
+
 ## Usage
 
 ```bash
-/implement feature-name
-/implement feature-name function-name
+/ttr:implement feature-name
+/ttr:implement feature-name function-name
 ```

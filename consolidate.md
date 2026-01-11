@@ -1,4 +1,4 @@
-# consolidate
+# ttr:consolidate
 
 Create permanent docs from planning artifacts. Clean up.
 
@@ -82,6 +82,6 @@ Feature implemented in: {commits}
 ## Usage
 
 ```bash
-/consolidate feature-name
-/consolidate feature-name --keep-planning
+/ttr:consolidate feature-name
+/ttr:consolidate feature-name --keep-planning
 ```
