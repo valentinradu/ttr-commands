@@ -1,10 +1,10 @@
-# ttr:fix
+# ttr-fix
 
 Context-aware issue resolution. Addresses ALL findings unless filtered.
 
 ## Parameters
 
-Parse natural language: `/ttr:fix`, `/ttr:fix ignore P2`, `/ttr:fix only security`, `/ttr:fix ignore minor`
+Parse natural language: `/ttr-fix`, `/ttr-fix ignore P2`, `/ttr-fix only security`, `/ttr-fix ignore minor`
 
 Extract: priority filter, concern filter
 
@@ -23,7 +23,7 @@ Check for issues:
 3. Test failures → Test issues
 4. Docs TODOs/incomplete → Doc issues
 
-No issues: `AskUserQuestion: "No issues found. Run /ttr:audit first/specify what to fix/abort?"`
+No issues: `AskUserQuestion: "No issues found. Run /ttr-audit first/specify what to fix/abort?"`
 
 ## Fix docs
 
@@ -60,10 +60,10 @@ Cannot write test: `AskUserQuestion: "Cannot reproduce {issue}. False positive/i
 Read `{feature}-audit.md`. Apply filters:
 
 - Default: Fix ALL (P0-P4)
-- `/ttr:fix ignore P2` → Skip P2
-- `/ttr:fix ignore minor` → Critical, major only
-- `/ttr:fix only security` → Security findings only
-- `/ttr:fix only P0 P1` → P0, P1 only
+- `/ttr-fix ignore P2` → Skip P2
+- `/ttr-fix ignore minor` → Critical, major only
+- `/ttr-fix only security` → Security findings only
+- `/ttr-fix only P0 P1` → P0, P1 only
 
 Process by priority: P0 → P1 → P2 → P3 → P4
 
@@ -109,8 +109,8 @@ Code: One commit per issue (test + fix)
 ## Usage
 
 ```bash
-/ttr:fix
-/ttr:fix ignore P2
-/ttr:fix only security
-/ttr:fix ignore minor
+/ttr-fix
+/ttr-fix ignore P2
+/ttr-fix only security
+/ttr-fix ignore minor
 ```

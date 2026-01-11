@@ -1,4 +1,4 @@
-# ttr:init
+# ttr-init
 
 Resume workflow session. Detect current phase and load context.
 
@@ -12,16 +12,16 @@ Check in order:
 
 ## Phase detection
 
-- No config → First time, run `/ttr:plan`
-- Config + no docs → Run `/ttr:plan {feature}`
+- No config → First time, run `/ttr-plan`
+- Config + no docs → Run `/ttr-plan {feature}`
 - Req doc only → Continue with technical plan
 - Req + tech docs → Continue with test plan
-- All planning docs, no stubs → Run `/ttr:stub {feature}`
-- Stub manifest exists, no impl manifest → Run `/ttr:implement {feature}`
-- Impl manifest exists, no audit → Run `/ttr:audit`
-- Audit exists, issues found → Run `/ttr:fix`
-- Audit clean, no review → Run `/ttr:review {feature}`
-- Review approved → Run `/ttr:consolidate {feature}`
+- All planning docs, no stubs → Run `/ttr-stub {feature}`
+- Stub manifest exists, no impl manifest → Run `/ttr-implement {feature}`
+- Impl manifest exists, no audit → Run `/ttr-audit`
+- Audit exists, issues found → Run `/ttr-fix`
+- Audit clean, no review → Run `/ttr-review {feature}`
+- Review approved → Run `/ttr-consolidate {feature}`
 
 ## Context loading
 
@@ -36,6 +36,6 @@ Present: `AskUserQuestion: "Detected phase: {phase}. Context: {summary}. Continu
 ## Usage
 
 ```bash
-/ttr:init
-/ttr:init feature-name
+/ttr-init
+/ttr-init feature-name
 ```

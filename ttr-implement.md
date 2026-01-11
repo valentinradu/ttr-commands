@@ -1,10 +1,10 @@
-# ttr:implement
+# ttr-implement
 
 TDD cycle: test → implement → verify → commit.
 
 ## Prerequisites
 
-Check stubs compile and tests exist. If missing: `AskUserQuestion: "Stubs/tests missing. Run /ttr:stub or create tests first or continue (will fail)?"`
+Check stubs compile and tests exist. If missing: `AskUserQuestion: "Stubs/tests missing. Run /ttr-stub or create tests first or continue (will fail)?"`
 
 ## Rhythm per function
 
@@ -74,6 +74,6 @@ Update `{feature}-impl-manifest.json` after each function:
 ## Usage
 
 ```bash
-/ttr:implement feature-name
-/ttr:implement feature-name function-name
+/ttr-implement feature-name
+/ttr-implement feature-name function-name
 ```

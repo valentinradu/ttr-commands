@@ -1,4 +1,4 @@
-# ttr:plan
+# ttr-plan
 
 Progressive requirements → technical → tests workflow.
 
@@ -66,5 +66,5 @@ Validate: `AskUserQuestion: "Test plan complete? (yes/add more/back)"`
 ## Usage
 
 ```bash
-/ttr:plan feature-name
+/ttr-plan feature-name
 ```

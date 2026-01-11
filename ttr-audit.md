@@ -1,10 +1,10 @@
-# ttr:audit
+# ttr-audit
 
 Context-aware quality checks. Free-form parameters.
 
 ## Parameters
 
-Parse natural language: `/ttr:audit security`, `/ttr:audit performance on http handlers`, `/ttr:audit error handling in auth`
+Parse natural language: `/ttr-audit security`, `/ttr-audit performance on http handlers`, `/ttr-audit error handling in auth`
 
 Extract: concern, scope, depth
 
@@ -70,8 +70,8 @@ After fixes: `AskUserQuestion: "Fixes complete. Re-audit/move to review/continue
 ## Usage
 
 ```bash
-/ttr:audit security
-/ttr:audit performance in api handlers
-/ttr:audit consistency
-/ttr:audit
+/ttr-audit security
+/ttr-audit performance in api handlers
+/ttr-audit consistency
+/ttr-audit
 ```

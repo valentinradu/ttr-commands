@@ -10,30 +10,30 @@ Each phase constrains the next. By implementation, correctness becomes likely ra
 
 | Command | Description |
 |---------|-------------|
-| `/ttr:init` | Resume workflow session |
-| `/ttr:plan` | Requirements → technical → tests |
-| `/ttr:stub` | Generate interface stubs |
-| `/ttr:implement` | TDD cycle per function |
-| `/ttr:audit` | Context-aware quality checks |
-| `/ttr:fix` | Fix all issues test-first |
-| `/ttr:review` | AI-assisted code review |
-| `/ttr:consolidate` | Permanent docs, cleanup |
+| `/ttr-init` | Resume workflow session |
+| `/ttr-plan` | Requirements → technical → tests |
+| `/ttr-stub` | Generate interface stubs |
+| `/ttr-implement` | TDD cycle per function |
+| `/ttr-audit` | Context-aware quality checks |
+| `/ttr-fix` | Fix all issues test-first |
+| `/ttr-review` | AI-assisted code review |
+| `/ttr-consolidate` | Permanent docs, cleanup |
 
 ## Quick Start
 
 ```bash
-/ttr:plan feature-name    # Requirements → technical → tests
-/ttr:stub feature-name    # Generate interface stubs
-/ttr:implement feature-name    # TDD cycle per function
-/ttr:audit security       # Find issues
-/ttr:fix                  # Fix all issues test-first
-/ttr:review feature-name  # Human review
-/ttr:consolidate feature-name    # Permanent docs, cleanup
+/ttr-plan feature-name    # Requirements → technical → tests
+/ttr-stub feature-name    # Generate interface stubs
+/ttr-implement feature-name    # TDD cycle per function
+/ttr-audit security       # Find issues
+/ttr-fix                  # Fix all issues test-first
+/ttr-review feature-name  # Human review
+/ttr-consolidate feature-name    # Permanent docs, cleanup
 ```
 
 Resume session:
 ```bash
-/ttr:init    # Detect phase, load context
+/ttr-init    # Detect phase, load context
 ```
 
 ## Key Principles
@@ -48,7 +48,7 @@ Resume session:
 
 ## Configuration
 
-First `/ttr:plan` prompts for docs location. Saves to `.psiar-config.json`:
+First `/ttr-plan` prompts for docs location. Saves to `.psiar-config.json`:
 
 ```json
 {"docsPath": "/docs"}
