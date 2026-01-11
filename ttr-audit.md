@@ -1,6 +1,6 @@
 # ttr-audit
 
-Context-aware quality checks.
+Context-aware quality checks. Update manifest.
 
 ## Parameters
 
@@ -15,8 +15,7 @@ Extract: concern, scope, depth
 
 ## Plans
 
-Requirements: Edge cases? Ambiguous? Contradictions? Assumptions?
-Technical: Dependencies justified? Failures covered? Interfaces clear? Risks?
+Spec: Edge cases? Ambiguous? Contradictions? Assumptions? Dependencies justified? Failures covered? Interfaces clear? Risks?
 Tests: Coverage gaps? Edge cases? Failures tested?
 
 Output: Severity (critical/major/minor)
@@ -34,7 +33,7 @@ Output: Ranked by severity + effort
 
 Plans vs code:
 - All requirements implemented?
-- Follows tech plan?
+- Follows spec?
 - All tests implemented?
 - Extra features?
 - Extra tests?
@@ -60,6 +59,16 @@ Can't reproduce? `AskUserQuestion: "Cannot reproduce {finding}. False positive/u
 | Major | High | P2 |
 | Minor | Low | P3 |
 | Minor | High | P4 |
+
+## Manifest
+
+Add audit findings as tasks in `{feature}-manifest.toml`:
+```toml
+[[tasks]]
+name = "Fix SQL injection in user query"
+status = "todo"
+locations = ["src/db.rs:87"]
+```
 
 ## Next
 

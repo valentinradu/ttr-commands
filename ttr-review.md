@@ -1,29 +1,47 @@
 # ttr-review
 
-AI-assisted code review.
+AI-assisted code review. Split trivial/non-trivial.
 
 ## Prerequisites
 
-Need: feature implemented, tests passing, audit done.
-Missing audit? `AskUserQuestion: "No audit. Run /ttr-audit/skip/cancel?"`
+Need: feature implemented, tests passing.
+Missing? `AskUserQuestion: "Tests not passing. Run tests/skip/cancel?"`
+
+## Classification
+
+Split all changes into:
+
+**Trivial:**
+- Format (whitespace, line breaks)
+- Naming (renames that don't change behavior)
+- Comments (additions, fixes, typos)
+- Imports (reordering, cleanup)
+- Type annotations (adding/fixing without logic change)
+
+**Non-trivial:**
+- Logic (any behavioral change)
+- Architecture (structure, interfaces)
+- Security (auth, validation, secrets)
+- Performance (algorithms, queries, allocations)
+- Error handling (new cases, changed behavior)
+
+## Trivial Commit
+
+After classification:
+`AskUserQuestion: "Found {n} trivial changes ({list}). Commit now? (yes/review first/skip)"`
+
+If yes: Create commit with message "chore: trivial fixes ({summary})"
 
 ## Pre-review (300-500 tokens)
 
-Generate `{feature}-review.md`:
+Generate `{feature}-review.md` for non-trivial changes:
 - Changes: File-by-file
 - Why: Link to requirements
 - Decisions: Choices, alternatives
 - Risks: Complex, security, performance, interfaces
 - Coverage: Tested/untested + why
 
-## Classification
-
-Per file:
-- Cosmetic (format, naming, comments) → Low
-- Behavioral (logic) → Medium
-- Architectural (structure, interfaces) → High
-
-## Prompts
+## Review Prompts
 
 Security: "Review auth {file}:{lines}", "Verify validation", "Check authz"
 Complex: "Verify algorithm", "Check edges vs tests", "Error handling"
@@ -39,26 +57,25 @@ AI explains → Human verifies → Mismatch = bug
 
 ## Confidence
 
-- High + cosmetic → Auto
-- High + behavioral → Quick
-- Medium/low → Full
+- High + trivial → Auto (or quick commit)
+- High + behavioral → Quick review
+- Medium/low → Full review
 - Architectural → Always full
-
-## Auto-approve
-
-All true: cosmetic, tests pass, audit clean, no interface changes, high confidence
 
 ## Cycle
 
-1. Generate pre-review
-2. Present
-3. Feedback
-4. Changes? Test-first, re-audit, re-review
-5. Approved? Consolidate
+1. Classify changes (trivial/non-trivial)
+2. Offer trivial commit
+3. Generate pre-review for non-trivial
+4. Present
+5. Feedback
+6. Changes? Test-first, re-review
+7. Approved? Consolidate
 
 ## Usage
 
 ```bash
 /ttr-review feature-name
 /ttr-review feature-name --scope file.rs
+/ttr-review feature-name --skip-trivial
 ```

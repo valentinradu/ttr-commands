@@ -1,6 +1,6 @@
 # ttr-implement
 
-TDD: test → implement → verify.
+TDD: test → implement → verify. Update manifest.
 
 ## Prerequisites
 
@@ -12,7 +12,8 @@ Need stubs + tests. `AskUserQuestion: "Stubs/tests missing. Run /ttr-stub or cre
 2. Run tests (confirm red)
 3. Implement minimal to pass
 4. Run tests (confirm green)
-5. Next function
+5. Update manifest: status = "done", locations = implementation
+6. Next function
 
 ## Context (~1000 tokens)
 
@@ -22,7 +23,7 @@ Include: stub, tests, direct dependencies, types. Exclude unrelated code.
 
 ```
 Implement {function} at {file}:{line}
-Constraints: {signature}, {tests}, {dependencies}, {tech excerpt}
+Constraints: {signature}, {tests}, {dependencies}, {spec excerpt}
 Make tests green. Nothing more.
 Stop if tests unclear or dependencies missing.
 ```
@@ -39,7 +40,7 @@ No test? `AskUserQuestion: "No test. Write first (recommended) or skip (breaks w
 
 ## Failures
 
-3 attempts fail? `AskUserQuestion: "Cannot pass. Review tech plan/review tests/get help?"`
+3 attempts fail? `AskUserQuestion: "Cannot pass. Review spec/review tests/get help?"`
 
 ## Order
 
@@ -48,14 +49,12 @@ Circular? `AskUserQuestion: "Circular {A}↔{B}. Refactor/interface/together (ri
 
 ## Manifest
 
-Update `{feature}-impl-manifest.json`:
-```json
-{
-  "feature": "feature-name",
-  "files": ["src/feature.rs", "tests/feature_test.rs"],
-  "functions": ["fn_1", "fn_2"],
-  "timestamp": "ISO8601"
-}
+Update `{feature}-manifest.toml` as tasks complete:
+```toml
+[[tasks]]
+name = "Implement parse_config"
+status = "done"
+locations = ["src/config.rs:42", "tests/config_test.rs:15"]
 ```
 
 ## Usage

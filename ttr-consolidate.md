@@ -9,7 +9,7 @@ Incomplete? `AskUserQuestion: "Incomplete ({status}). Consolidate anyway?"`
 
 ## Inputs
 
-Read: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`, `{feature}-review.md`, `{feature}-audit.md`, code, tests
+Read: `{feature}-spec.md`, `{feature}-tests.md`, `{feature}-review.md`, `{feature}-manifest.toml`, code, tests
 
 ## Output (`{feature}.md`, 400-800 tokens)
 
@@ -17,13 +17,13 @@ Read: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`, `{feature}-
 # {Feature}
 
 ## Purpose
-Problem solved (from req)
+Problem solved (from spec)
 
 ## Architecture
-How it works, components, flow (from tech + diagram)
+How it works, components, flow (from spec + diagram)
 
 ## Key decisions
-Libraries, alternatives, trade-offs (from tech + review)
+Libraries, alternatives, trade-offs (from spec + review)
 
 ## Usage
 How to use, examples
@@ -32,7 +32,7 @@ How to use, examples
 Coverage, where tests are (from plan + tests)
 
 ## Maintenance
-Limitations, future work, attention areas (from audit + review)
+Limitations, future work, attention areas (from review)
 ```
 
 ## Prompt
@@ -51,6 +51,8 @@ Omit: redundant, temporary, resolved, process
 ## Cleanup
 
 After approval: `AskUserQuestion: "Delete planning ({list})? In git history, key info in doc. Delete/archive/keep?"`
+
+Also delete `{feature}-manifest.toml` or archive if needed.
 
 ## ADR
 

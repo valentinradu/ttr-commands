@@ -1,6 +1,6 @@
 # ttr-fix
 
-Fix all issues unless filtered.
+Fix all issues unless filtered. Update manifest.
 
 ## Parameters
 
@@ -12,15 +12,10 @@ Extract: priority filter, concern filter
 - Docs → Fix docs
 - Tests → Fix tests
 - Code → Fix code
-- `{feature}-audit.md` → Fix audit
 
 ## Prerequisites
 
-Check:
-1. `{feature}-audit.md`
-2. Linter/compiler
-3. Test failures
-4. Doc TODOs
+Check `{feature}-manifest.toml` for tasks with status = "todo".
 
 None? `AskUserQuestion: "No issues. Run /ttr-audit/specify/abort?"`
 
@@ -44,20 +39,19 @@ Per issue:
 3. If unclear: `AskUserQuestion: "{issue}. A: {details} / B: {details} / Investigate?"`
 4. Fix minimal
 5. Verify passes
+6. Update manifest: status = "done"
 
 Can't test? `AskUserQuestion: "Can't reproduce {issue}. False positive/investigate/missing infra?"`
 
-## Audit
+## Filters
 
-Read `{feature}-audit.md`. Filters:
-- Default: ALL (P0-P4)
+- Default: ALL
 - `ignore P2` → Skip P2
 - `ignore minor` → Critical, major
 - `only security` → Security only
 - `only P0 P1` → P0, P1 only
 
 Process: P0 → P1 → P2 → P3 → P4
-After: Delete or update audit file
 
 ## Gates
 
@@ -65,11 +59,21 @@ Ask before fix if:
 - Architectural change
 - Multiple approaches
 - >3 files impacted
-- Contradicts plan
+- Contradicts spec
 - New dependency
 - Unclear if problem
 
 **Never guess. Always ask.**
+
+## Manifest
+
+Update `{feature}-manifest.toml` as fixes complete:
+```toml
+[[tasks]]
+name = "Fix SQL injection in user query"
+status = "done"
+locations = ["src/db.rs:87", "tests/db_test.rs:120"]
+```
 
 ## After
 
