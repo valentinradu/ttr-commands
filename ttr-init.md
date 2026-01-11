@@ -5,7 +5,7 @@ Resume workflow session. Detect current phase and load context.
 ## Detection logic
 
 Check in order:
-1. `.psiar-config.json` exists? Load docsPath
+1. `.ttr.toml` exists? Load docsPath
 2. Manifests exist? `{feature}-stub-manifest.json`, `{feature}-impl-manifest.json`
 3. Docs exist? `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`, `{feature}-audit.md`, `{feature}-review.md`
 4. Implementation files exist? Check manifest file lists
