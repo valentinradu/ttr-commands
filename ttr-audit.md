@@ -1,59 +1,57 @@
 # ttr-audit
 
-Context-aware quality checks. Free-form parameters.
+Context-aware quality checks.
 
 ## Parameters
 
-Parse natural language: `/ttr-audit security`, `/ttr-audit performance on http handlers`, `/ttr-audit error handling in auth`
-
+Parse: `/ttr-audit security`, `/ttr-audit performance on http handlers`, `/ttr-audit error handling in auth`
 Extract: concern, scope, depth
 
-## Context detection
+## Context
 
-- Planning docs only → Audit plans
-- Implementation exists → Audit code
+- Docs only → Audit plans
+- Code exists → Audit code
 - Both → Audit consistency
 
-## Audit plans
+## Plans
 
-Requirements: Missing edge cases? Ambiguous criteria? Contradictions? Unstated assumptions?
-Technical: Dependencies justified? Failure modes covered? Interfaces clear? Risks identified?
-Tests: Coverage gaps? Edge cases from requirements covered? Failure modes tested?
+Requirements: Edge cases? Ambiguous? Contradictions? Assumptions?
+Technical: Dependencies justified? Failures covered? Interfaces clear? Risks?
+Tests: Coverage gaps? Edge cases? Failures tested?
 
-Output: Findings with severity (critical/major/minor)
+Output: Severity (critical/major/minor)
 
-## Audit code
+## Code
 
-Security: Input validation, SQL injection, XSS, auth/authz, secrets, dependency CVEs
-Performance: Unnecessary allocations, N+1 queries, missing indexes, inefficient algorithms, lock contention
-Correctness: Off-by-one, null handling, integer overflow, concurrent access bugs, resource leaks
-Maintainability: Complex functions, missing error context, magic numbers, inconsistent naming
+Security: Validation, injection, XSS, auth, secrets, CVEs
+Performance: Allocations, N+1, indexes, algorithms, locks
+Correctness: Off-by-one, nulls, overflow, concurrency, leaks
+Maintainability: Complexity, error context, magic numbers, naming
 
-Output: Findings ranked by severity and fix effort
+Output: Ranked by severity + effort
 
-## Audit consistency
+## Consistency
 
-Compare plans vs implementation:
-- Code implements all requirements?
-- Code follows technical plan?
-- All planned tests implemented?
-- Features not in requirements?
-- Tests not in test plan?
+Plans vs code:
+- All requirements implemented?
+- Follows tech plan?
+- All tests implemented?
+- Extra features?
+- Extra tests?
 
-Output: Discrepancies requiring reconciliation
+Output: Discrepancies
 
-## Test-first fix (mandatory)
+## Test-first (mandatory)
 
-For every finding:
-1. Write test reproducing issue (must fail)
-2. Verify test fails
-3. Implement fix
-4. Verify test passes
-5. Commit test + fix together
+Per finding:
+1. Write failing test
+2. Verify fails
+3. Fix
+4. Verify passes
 
-Cannot write failing test? `AskUserQuestion: "Cannot reproduce {finding}. False positive/not understood/test infrastructure missing. Investigate/skip/get review?"`
+Can't reproduce? `AskUserQuestion: "Cannot reproduce {finding}. False positive/unclear/missing infrastructure. Investigate/skip/review?"`
 
-## Prioritization
+## Priority
 
 | Severity | Effort | Priority |
 |----------|--------|----------|
@@ -63,9 +61,9 @@ Cannot write failing test? `AskUserQuestion: "Cannot reproduce {finding}. False 
 | Minor | Low | P3 |
 | Minor | High | P4 |
 
-## Audit chaining
+## Next
 
-After fixes: `AskUserQuestion: "Fixes complete. Re-audit/move to review/continue implementation?"`
+`AskUserQuestion: "Fixes done. Re-audit/review/continue?"`
 
 ## Usage
 

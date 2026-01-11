@@ -1,72 +1,59 @@
 # ttr-implement
 
-TDD cycle: test → implement → verify → commit.
+TDD: test → implement → verify.
 
 ## Prerequisites
 
-Check stubs compile and tests exist. If missing: `AskUserQuestion: "Stubs/tests missing. Run /ttr-stub or create tests first or continue (will fail)?"`
+Need stubs + tests. `AskUserQuestion: "Stubs/tests missing. Run /ttr-stub or create tests or continue (will fail)?"`
 
-## Rhythm per function
+## Rhythm (per function)
 
 1. Verify test exists
 2. Run tests (confirm red)
-3. Implement minimal code to pass
+3. Implement minimal to pass
 4. Run tests (confirm green)
-5. Commit: `feat({feature}): implement {function}`
-6. Next function
+5. Next function
 
-## Context
+## Context (~1000 tokens)
 
-Provide only: function stub, function tests, direct dependencies, types used. Exclude unrelated code (~1000 tokens total).
+Include: stub, tests, direct dependencies, types. Exclude unrelated code.
 
-## Implementation prompt
+## Prompt template
 
 ```
 Implement {function} at {file}:{line}
-Constraints: {signature}, {tests}, {dependencies}, {tech plan excerpt}
+Constraints: {signature}, {tests}, {dependencies}, {tech excerpt}
 Make tests green. Nothing more.
 Stop if tests unclear or dependencies missing.
 ```
 
 ## Model routing
 
-- High constraint (clear stub, tests, simple logic): Low-tier/local
-- Medium constraint (some ambiguity, complex logic): Mid-tier
-- Low constraint (unclear requirements, missing tests): Frontier
+- High constraint (clear stub/tests, simple): Low-tier/local
+- Medium (some ambiguity, complex): Mid-tier
+- Low (unclear reqs, missing tests): Frontier
 
-## Test-first mandatory
+## Test-first
 
-No test for function? `AskUserQuestion: "No test. Write test first (recommended) or skip (breaks workflow)?"`
-
-If skipped, mark commit as risky.
+No test? `AskUserQuestion: "No test. Write first (recommended) or skip (breaks workflow)?"`
 
 ## Failures
 
-If tests don't pass after 3 attempts: `AskUserQuestion: "Cannot pass tests. Review technical plan/review tests/get help?"`
+3 attempts fail? `AskUserQuestion: "Cannot pass. Review tech plan/review tests/get help?"`
 
-## Commit
+## Order
 
-```
-type({feature}): implement {function}
-
-Makes {test} pass. Implements {brief description}
-```
-
-## Function order
-
-Implement in dependency order: leaves first, top-level last.
-
-Circular dependency: `AskUserQuestion: "Circular {A}↔{B}. Refactor design/break with interface/implement together (risky)?"`
+Dependency order: leaves → top-level.
+Circular? `AskUserQuestion: "Circular {A}↔{B}. Refactor/interface/together (risky)?"`
 
 ## Manifest
 
-Update `{feature}-impl-manifest.json` after each function:
-
+Update `{feature}-impl-manifest.json`:
 ```json
 {
   "feature": "feature-name",
   "files": ["src/feature.rs", "tests/feature_test.rs"],
-  "functions": ["fn_name_1", "fn_name_2"],
+  "functions": ["fn_1", "fn_2"],
   "timestamp": "ISO8601"
 }
 ```

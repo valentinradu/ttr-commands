@@ -1,72 +1,60 @@
 # ttr-review
 
-AI-assisted code review with pre-review explanation.
+AI-assisted code review.
 
 ## Prerequisites
 
-Check: feature implemented, tests passing, audit complete. If audit missing: `AskUserQuestion: "Audit not run. Run /ttr-audit first/skip/cancel?"`
+Need: feature implemented, tests passing, audit done.
+Missing audit? `AskUserQuestion: "No audit. Run /ttr-audit/skip/cancel?"`
 
-## Pre-review explanation
+## Pre-review (300-500 tokens)
 
-Generate summary (300-500 tokens):
-- What changed: File-by-file
-- Why: Connect to requirements
-- Key decisions: Technical choices, alternatives
-- Risk areas: Complex logic, security-sensitive, performance-critical, shared interfaces
-- Test coverage: What's tested/untested with justification
+Generate `{feature}-review.md`:
+- Changes: File-by-file
+- Why: Link to requirements
+- Decisions: Choices, alternatives
+- Risks: Complex, security, performance, interfaces
+- Coverage: Tested/untested + why
 
-Save to `{feature}-review.md`
-
-## Change classification
+## Classification
 
 Per file:
-- Cosmetic (formatting, naming, comments) → Low scrutiny
-- Behavioral (logic changes) → Medium scrutiny
-- Architectural (structure, interfaces) → High scrutiny
+- Cosmetic (format, naming, comments) → Low
+- Behavioral (logic) → Medium
+- Architectural (structure, interfaces) → High
 
-## Review prompts
+## Prompts
 
-Security: "Review auth checks in {file}:{lines}", "Verify input validation", "Check authorization"
-Complex: "Verify algorithm correctness", "Check edge cases vs test plan", "Confirm error handling"
-Performance: "Review allocations", "Check query efficiency", "Verify caching"
+Security: "Review auth {file}:{lines}", "Verify validation", "Check authz"
+Complex: "Verify algorithm", "Check edges vs tests", "Error handling"
+Performance: "Review allocations", "Query efficiency", "Caching"
 
-## Catching inconsistencies
+## Inconsistencies
 
-AI explains intention → Human verifies code matches → Mismatch = bug
+AI explains → Human verifies → Mismatch = bug
 
-## Review interface
+## Interface
 
-`AskUserQuestion: "Review {file}:{lines}. Context: {explanation}. Assessment: approve/request changes/needs deeper review?"`
+`AskUserQuestion: "Review {file}:{lines}. Context: {explanation}. Approve/changes/deeper?"`
 
-## Confidence signals
+## Confidence
 
-- High confidence + cosmetic → Auto-approve
-- High confidence + behavioral → Quick scan
-- Medium/low confidence → Full review
-- Architectural → Always full review
+- High + cosmetic → Auto
+- High + behavioral → Quick
+- Medium/low → Full
+- Architectural → Always full
 
-## Auto-approve criteria
+## Auto-approve
 
-All must be true: cosmetic only, tests pass, audit clean, no interface changes, high AI confidence
+All true: cosmetic, tests pass, audit clean, no interface changes, high confidence
 
-## Review cycle
+## Cycle
 
 1. Generate pre-review
-2. Present to reviewer
-3. Reviewer provides feedback
-4. If changes: implement test-first, re-audit, re-review
-5. If approved: commit with reviewed-by tag
-
-## Commit format
-
-```
-type({feature}): {description}
-
-{Pre-review explanation}
-
-Changes: {list}
-Review: {reviewer}
-```
+2. Present
+3. Feedback
+4. Changes? Test-first, re-audit, re-review
+5. Approved? Consolidate
 
 ## Usage
 

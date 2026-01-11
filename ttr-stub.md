@@ -1,52 +1,47 @@
 # ttr-stub
 
-Generate interface stubs from planning docs.
+Generate interface stubs from plans.
 
 ## Prerequisites
 
-Check files exist: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`
+Need: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`
+Missing? `AskUserQuestion: "Planning incomplete. Run /ttr-plan or continue (risky)?"`
 
-If missing: `AskUserQuestion: "Planning incomplete. Run /ttr-plan first or create stubs anyway (risky)?"`
-
-## Stub structure
-
-For each component in technical plan:
+## Structure
 
 ```
-/// Description from technical plan.
-/// Parameters: document with valid ranges/constraints
-/// Returns: including success/error cases
-/// Errors: enumerate from failure modes
+/// Description from tech plan
+/// Parameters: ranges/constraints
+/// Returns: success/error cases
+/// Errors: from failure modes
 function component(params) -> Result {
-    assert(preconditions_from_test_plan)
-    // TODO: Implement specific behavior from tests
+    assert(preconditions_from_tests)
+    // TODO: Implement from tests
 }
 ```
 
-## Generation
+## Process
 
-Read all planning docs. For each component:
-1. Extract interface from technical plan
-2. Add documentation from requirements
-3. Add assertions from test edge cases
-4. Generate stub with TODO placeholder
+Read all plans. Per component:
+1. Extract interface from tech
+2. Add docs from requirements
+3. Add assertions from test edges
+4. Generate stub + TODO
 
-Organize: public interface first, private after, group related functions.
+Organize: public first, private after, group related.
 
-Validate: Run compiler/type checker. If passes, ask: `AskUserQuestion: "Stubs correct? (yes/needs changes)"`
+Validate: Compile/type check. `AskUserQuestion: "Stubs correct? (yes/fix)"`
 
-If technical plan is vague on types: `AskUserQuestion: "Types not specified. Infer/go back to planning/provide now?"`
-
-Multiple modules: `AskUserQuestion: "Create stubs for all modules or one at a time?"`
+If types unclear: `AskUserQuestion: "Types missing. Infer/back to plan/provide?"`
+Multiple modules: `AskUserQuestion: "All modules or one at a time?"`
 
 ## Manifest
 
-After stub generation, save `{feature}-stub-manifest.json`:
-
+Save `{feature}-stub-manifest.json`:
 ```json
 {
   "feature": "feature-name",
-  "files": ["src/feature.rs", "src/feature/mod.rs"],
+  "files": ["src/feature.rs"],
   "timestamp": "ISO8601"
 }
 ```

@@ -1,37 +1,30 @@
 # ttr-init
 
-Resume workflow session. Detect current phase and load context.
+Resume workflow. Detect phase and load context.
 
-## Detection logic
+## Detection
 
-Check in order:
-1. `.ttr.toml` exists? Load docsPath
-2. Manifests exist? `{feature}-stub-manifest.json`, `{feature}-impl-manifest.json`
-3. Docs exist? `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`, `{feature}-audit.md`, `{feature}-review.md`
-4. Implementation files exist? Check manifest file lists
+1. Load `.ttr.toml` (docsPath)
+2. Find manifests: `{feature}-stub-manifest.json`, `{feature}-impl-manifest.json`
+3. Find docs: `{feature}-req.md`, `{feature}-tech.md`, `{feature}-tests.md`, `{feature}-audit.md`, `{feature}-review.md`
 
-## Phase detection
+## Phase
 
-- No config → First time, run `/ttr-plan`
-- Config + no docs → Run `/ttr-plan {feature}`
-- Req doc only → Continue with technical plan
-- Req + tech docs → Continue with test plan
-- All planning docs, no stubs → Run `/ttr-stub {feature}`
-- Stub manifest exists, no impl manifest → Run `/ttr-implement {feature}`
-- Impl manifest exists, no audit → Run `/ttr-audit`
-- Audit exists, issues found → Run `/ttr-fix`
-- Audit clean, no review → Run `/ttr-review {feature}`
-- Review approved → Run `/ttr-consolidate {feature}`
+- No config → `/ttr-plan`
+- Req only → Continue technical
+- Req + tech → Continue tests
+- Docs complete, no stubs → `/ttr-stub`
+- Stubs done, no impl → `/ttr-implement`
+- Impl done, no audit → `/ttr-audit`
+- Audit with issues → `/ttr-fix`
+- Audit clean, no review → `/ttr-review`
+- Review done → `/ttr-consolidate`
 
-## Context loading
+## Context
 
-Load and summarize (100-200 tokens):
-- Planning docs: Key requirements, approach, test strategy
-- Manifests: Files modified, functions implemented
-- Implementation files from manifests: Current state
-- Audit findings: Unresolved issues
+Summarize (100-200 tokens): requirements, approach, test strategy, modified files, functions, current state, issues.
 
-Present: `AskUserQuestion: "Detected phase: {phase}. Context: {summary}. Continue/override/specify feature?"`
+`AskUserQuestion: "Detected {phase}. Context: {summary}. Continue/override/specify?"`
 
 ## Usage
 
